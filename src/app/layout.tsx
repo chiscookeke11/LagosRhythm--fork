@@ -7,7 +7,7 @@ import {
   ClerkProvider,
 } from '@clerk/nextjs'
 import Providers from "./providers/Providers";
-import { metadataKeywords } from "@/data/data";
+import { metadataKeywords } from "@/data/metadata";
 
 
 

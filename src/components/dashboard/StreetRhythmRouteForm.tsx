@@ -340,6 +340,7 @@ export default function StreetRhythmRouteForm({
           <Button
             onClick={addMedia}
             label="Add Media Item"
+            ariaLabel="Add media item"
             type="button"
             className="!bg-[#05073C] mt-4 w-full"
           />
@@ -384,11 +385,13 @@ export default function StreetRhythmRouteForm({
           <Button
             onClick={onCancel}
             label="Cancel"
+            ariaLabel="Cancel route form"
             type="button"
             className="!bg-[#E5E7EB] text-[#737791] flex-1"
           />
           <Button
             label={loading ? "Saving..." : "Save Route"}
+            ariaLabel={loading ? "Saving route" : "Save route"}
             type="submit"
             disabled={loading}
             className="!bg-[#EF8F57] flex-1"

@@ -62,6 +62,7 @@ export default function TestLabPage() {
             content_url?: string
           }
           const route_key = data.route_key || "unknown"
+          const mediaType = data.type ?? "text"
 
           if (!routeMap.has(route_key)) {
             routeMap.set(route_key, {
@@ -74,7 +75,7 @@ export default function TestLabPage() {
 
           const route = routeMap.get(route_key)!
           route.media.push({
-            type: data.type,
+            type: mediaType,
             language: data.language,
             title: data.title,
             content_url: data.content_url,
