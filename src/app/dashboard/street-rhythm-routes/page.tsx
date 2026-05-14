@@ -86,8 +86,9 @@ export default function StreetRhythmRoutesPage() {
         }
 
         const route = routeMap.get(route_key)!
+        const mediaType: RouteMediaItem["type"] = data.type ?? "text"
         route.media.push({
-          type: data.type,
+          type: mediaType,
           language: data.language,
           title: data.title,
           content_url: data.content_url,
