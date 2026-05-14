@@ -1,0 +1,139 @@
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Inter, Lato, Merienda, Merriweather, Playfair_Display, Signika } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import { LagosRhythmProvider } from "./context/AppContext";
+import {
+  ClerkProvider,
+} from '@clerk/nextjs'
+import Providers from "./providers/Providers";
+import { metadataKeywords } from "@/data/data";
+
+
+
+
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"]
+})
+
+
+const playfair = Playfair_Display({
+  variable: '--font-playfair',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+})
+
+
+const lato = Lato({
+  variable: '--font-lato',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+})
+
+
+const merriWeather = Merriweather({
+  variable: '--font-merriweather',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+})
+
+const merienda = Merienda({
+  variable: "--font-merienda",
+  subsets: ["latin"],
+  weight: ['400', '700']
+})
+
+const signika = Signika({
+  variable: "--font-signika",
+  weight: ['400', '700'],
+  subsets: ['latin']
+})
+
+export const metadata: Metadata = {
+  title: "Lagos Rhythm",
+  description: "Tourism Technology",
+  keywords: metadataKeywords,
+  applicationName: "Lagos Rhythm",
+  authors: [{ name: "Lagos Rhythm Team", url: "https://www.lagosrhythm.com" }],
+  creator: "Lagos Rhythm Team",
+  publisher: "Lagos Rhythm",
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
+  robots: "index, follow",
+  icons: {
+    icon: "./favicon.ico",
+    shortcut: "./favicon.ico",
+    apple: "./favicon.ico",
+  },
+  openGraph: {
+    title: "Lagos Rhythm",
+    description:
+      "Tourism Technology",
+    url: "https://www.lagosrhythm.com",
+    siteName: "Lagos Rhythm",
+    images: [
+      {
+        url: "./favicon.ico",
+        width: 1200,
+        height: 630,
+        alt: "Lagos Rhythm",
+      },
+    ],
+    locale: "en_NG",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lagos Rhythm",
+    description:
+      "Tourism Technology",
+    site: "@LagosRhythm",
+    creator: "@LagosRhythm",
+    images: ["./favicon.ico"],
+  },
+  metadataBase: new URL("https://www.lagosrhythm.com"),
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
+  colorScheme: "light",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${playfair.variable} ${lato.variable} ${merriWeather.variable} ${merienda.variable} ${signika.variable} antialiased`}
+      >
+        <Providers>
+          <ClerkProvider>
+            <LagosRhythmProvider>
+              {children}
+              <Toaster position="bottom-right" />
+            </LagosRhythmProvider>
+          </ClerkProvider>
+        </Providers>
+      </body>
+    </html>
+  );
+}
