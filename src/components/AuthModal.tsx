@@ -6,11 +6,16 @@ import React, { useCallback, useState } from "react";
 import { useSignIn, useSignUp } from "@clerk/nextjs";
 import Loader from "@/components/common/Loader";
 import toast from "react-hot-toast";
-import { ClerkAPIError } from '@clerk/types'
 import Image from "next/image";
 import { Eye, EyeOff, X } from "lucide-react";
 import Link from "next/link";
 import { addUserToDb } from "@/lib/utils";
+
+type ClerkLikeError = {
+    errors?: Array<{
+        message?: string;
+    }>;
+};
 
 interface AuthModalProps {
     setShowAuthModal?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -69,7 +74,7 @@ export default function AuthModal({ setShowAuthModal, showCloseIcon }: AuthModal
             if (error instanceof Error) {
                 toast.error(error.message)
             } else if (typeof error === 'object' && error !== null && 'errors' in error) {
-                const clerkError = error as { errors: ClerkAPIError[] }
+                const clerkError = error as ClerkLikeError
                 toast.error(clerkError.errors?.[0]?.message || "Sign up failed. Please try again.")
             } else {
                 toast.error("Sign up failed. Please try again.")
@@ -119,7 +124,7 @@ export default function AuthModal({ setShowAuthModal, showCloseIcon }: AuthModal
             if (error instanceof Error) {
                 toast.error(error.message)
             } else if (typeof error === 'object' && error !== null && 'errors' in error) {
-                const clerkError = error as { errors: ClerkAPIError[] }
+                const clerkError = error as ClerkLikeError
                 toast.error(clerkError.errors?.[0]?.message || "Verification failed. Please try again.")
             } else {
                 toast.error("Verification failed. Please try again.")
@@ -160,7 +165,7 @@ export default function AuthModal({ setShowAuthModal, showCloseIcon }: AuthModal
             if (error instanceof Error) {
                 toast.error(error.message)
             } else if (typeof error === 'object' && error !== null && 'errors' in error) {
-                const clerkError = error as { errors: ClerkAPIError[] }
+                const clerkError = error as ClerkLikeError
                 toast.error(clerkError.errors?.[0]?.message || "Sign-in failed. Please try again.")
             } else {
                 toast.error("An unexpected error occurred. Please try again.")
