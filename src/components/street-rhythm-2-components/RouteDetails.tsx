@@ -1,6 +1,7 @@
 "use client"
 
 import { useAppContext } from "@/app/context/AppContext"
+import { useState } from "react"
 import VideoTab from "../direction-feature-components/VideoTab"
 import TextTab from "../direction-feature-components/TextTab"
 import RecordingTab from "../direction-feature-components/RecordingTab"
@@ -53,6 +54,8 @@ export default function RouteDetails() {
             content: <RecordingTab data={soundResults} />
         }
     ]
+
+    const [activeTab, setActiveTab] = useState<string>("overview")
 
     return (
         <section id="route" className="w-full py-24 px-[5%] max-w-[1380px] mx-auto flex flex-col items-center gap-16 text-black">
@@ -123,96 +126,110 @@ export default function RouteDetails() {
 
                             <div className="flex flex-wrap gap-3">
                                 {sections.map((section) => (
-                                    <a
+                                    <button
                                         key={section.id}
-                                        href={`#${section.id}`}
-                                        className="rounded-lg border border-[#05073C] px-4 py-2 text-sm font-semibold text-[#05073C] transition-colors hover:bg-[#05073C] hover:text-white"
+                                        onClick={() => setActiveTab(section.id)}
+                                        className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${activeTab === section.id ? 'bg-[#05073C] text-white border-[#05073C]' : 'text-[#05073C] border-[#05073C] hover:bg-[#05073C] hover:text-white'}`}
                                     >
                                         {section.label}
-                                    </a>
+                                    </button>
                                 ))}
-                                <a
-                                    href="#route-map"
-                                    className="rounded-lg border border-[#05073C] px-4 py-2 text-sm font-semibold text-[#05073C] transition-colors hover:bg-[#05073C] hover:text-white"
+
+                                <button
+                                    onClick={() => setActiveTab('route-map')}
+                                    className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${activeTab === 'route-map' ? 'bg-[#05073C] text-white border-[#05073C]' : 'text-[#05073C] border-[#05073C] hover:bg-[#05073C] hover:text-white'}`}
                                 >
                                     Route Map
-                                </a>
-                                <a
-                                    href="#arrival-notifications"
-                                    className="rounded-lg border border-[#05073C] px-4 py-2 text-sm font-semibold text-[#05073C] transition-colors hover:bg-[#05073C] hover:text-white"
+                                </button>
+
+                                <button
+                                    onClick={() => setActiveTab('arrival-notifications')}
+                                    className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${activeTab === 'arrival-notifications' ? 'bg-[#05073C] text-white border-[#05073C]' : 'text-[#05073C] border-[#05073C] hover:bg-[#05073C] hover:text-white'}`}
                                 >
                                     Arrival Alerts
-                                </a>
-                                <a
-                                    href="#community-chat"
-                                    className="rounded-lg border border-[#05073C] px-4 py-2 text-sm font-semibold text-[#05073C] transition-colors hover:bg-[#05073C] hover:text-white"
+                                </button>
+
+                                <button
+                                    onClick={() => setActiveTab('community-chat')}
+                                    className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${activeTab === 'community-chat' ? 'bg-[#05073C] text-white border-[#05073C]' : 'text-[#05073C] border-[#05073C] hover:bg-[#05073C] hover:text-white'}`}
                                 >
                                     Community Chat
-                                </a>
+                                </button>
+
                                 {AIResults && AIResults.length > 0 && (
-                                    <a
-                                        href="#ai-direction"
-                                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100"
+                                    <button
+                                        onClick={() => setActiveTab('ai-direction')}
+                                        className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${activeTab === 'ai-direction' ? 'bg-gray-800 text-white border-gray-800' : 'text-gray-700 border-gray-300 hover:bg-gray-100'}`}
                                     >
                                         AI Direction
-                                    </a>
+                                    </button>
                                 )}
                             </div>
                         </div>
                     </div>
 
+                    {/* Render only the active section */}
                     {sections.map((section) => (
-                        <section key={section.id} id={section.id} className="border-t pt-10 scroll-mt-24">
-                            <div className="mb-6">
-                                <h3 className="text-2xl font-black text-[#05073C]">{section.label}</h3>
-                                <p className="text-sm text-gray-600 mt-2">{section.description}</p>
-                            </div>
-                            {section.content}
-                        </section>
+                        activeTab === section.id ? (
+                            <section key={section.id} id={section.id} className="border-t pt-10">
+                                <div className="mb-6">
+                                    <h3 className="text-2xl font-black text-[#05073C]">{section.label}</h3>
+                                    <p className="text-sm text-gray-600 mt-2">{section.description}</p>
+                                </div>
+                                {section.content}
+                            </section>
+                        ) : null
                     ))}
 
-                    <section id="travel-time" className="border-t pt-10 scroll-mt-24">
-                        <div className="mb-6">
-                            <h3 className="text-2xl font-black text-[#05073C]">Traffic & Travel Time</h3>
-                            <p className="text-sm text-gray-600 mt-2">
-                                Live estimate comparing normal route duration and current traffic duration.
-                            </p>
-                        </div>
-                        <RouteTrafficCard from={from} to={to} />
-                    </section>
+                    {/* Route Map */}
+                    {activeTab === 'route-map' && (
+                        <section id="route-map" className="border-t pt-10">
+                            <div className="mb-6">
+                                <h3 className="text-2xl font-black text-[#05073C]">Traffic & Travel Time</h3>
+                                <p className="text-sm text-gray-600 mt-2">
+                                    Live estimate comparing normal route duration and current traffic duration.
+                                </p>
+                            </div>
+                            <RouteTrafficCard from={from} to={to} />
 
-                    <section id="route-map" className="border-t pt-10 scroll-mt-24">
-                        <div className="mb-6">
-                            <h3 className="text-2xl font-black text-[#05073C]">Google Maps & Traffic Layer</h3>
-                            <p className="text-sm text-gray-600 mt-2">
-                                Route path with live road conditions rendered directly on Google Maps.
-                            </p>
-                        </div>
-                        <RouteMapTraffic from={from} to={to} />
-                    </section>
+                            <div className="mb-6 mt-10">
+                                <h3 className="text-2xl font-black text-[#05073C]">Google Maps & Traffic Layer</h3>
+                                <p className="text-sm text-gray-600 mt-2">
+                                    Route path with live road conditions rendered directly on Google Maps.
+                                </p>
+                            </div>
+                            <RouteMapTraffic from={from} to={to} />
+                        </section>
+                    )}
 
-                    <section id="arrival-notifications" className="border-t pt-10 scroll-mt-24">
-                        <div className="mb-6">
-                            <h3 className="text-2xl font-black text-[#05073C]">Arrival Notifications</h3>
-                            <p className="text-sm text-gray-600 mt-2">
-                                Browser alerts at 5 km, 1 km, and 500 m from destination.
-                            </p>
-                        </div>
-                        <RouteArrivalNotifications destination={to} />
-                    </section>
+                    {/* Arrival Notifications */}
+                    {activeTab === 'arrival-notifications' && (
+                        <section id="arrival-notifications" className="border-t pt-10">
+                            <div className="mb-6">
+                                <h3 className="text-2xl font-black text-[#05073C]">Arrival Notifications</h3>
+                                <p className="text-sm text-gray-600 mt-2">
+                                    Browser alerts at 5 km, 1 km, and 500 m from destination.
+                                </p>
+                            </div>
+                            <RouteArrivalNotifications destination={to} />
+                        </section>
+                    )}
 
-                    <section id="community-chat" className="border-t pt-10 scroll-mt-24">
-                        <div className="mb-6">
-                            <h3 className="text-2xl font-black text-[#05073C]">Community Chat</h3>
-                            <p className="text-sm text-gray-600 mt-2">
-                                Real-time commuter updates from people currently using this route.
-                            </p>
-                        </div>
-                        <RouteCommunityChat routeKey={selectedRoute?.routeKey} from={from} to={to} />
-                    </section>
+                    {/* Community Chat */}
+                    {activeTab === 'community-chat' && (
+                        <section id="community-chat" className="border-t pt-10">
+                            <div className="mb-6">
+                                <h3 className="text-2xl font-black text-[#05073C]">Community Chat</h3>
+                                <p className="text-sm text-gray-600 mt-2">
+                                    Real-time commuter updates from people currently using this route.
+                                </p>
+                            </div>
+                            <RouteCommunityChat routeKey={selectedRoute?.routeKey} from={from} to={to} />
+                        </section>
+                    )}
 
-                    {AIResults && AIResults.length > 0 && (
-                        <section id="ai-direction" className="border-t pt-10 scroll-mt-24">
+                    {activeTab === 'ai-direction' && AIResults && AIResults.length > 0 && (
+                        <section id="ai-direction" className="border-t pt-10">
                             <div className="mb-6">
                                 <h3 className="text-2xl font-black text-[#05073C]">AI Direction</h3>
                                 <p className="text-sm text-gray-600 mt-2">
