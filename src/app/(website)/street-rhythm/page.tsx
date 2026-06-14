@@ -7,9 +7,10 @@ import HowItWorks from "@/components/street-rhythm-2-components/HowItWorks"
 import ReadyToNavigate from "@/components/street-rhythm-2-components/ReadyToNavigate"
 import RouteDetails from "@/components/street-rhythm-2-components/RouteDetails"
 import WhyStreetRhythm from "@/components/street-rhythm-2-components/WhyStreetRhythm"
+import RouteCommunityChat from "@/components/street-rhythm-2-components/RouteCommunityChat"
 
 export default function Page() {
-  const { results, hasSearched } = useAppContext()
+  const { results, hasSearched, selectedRoute, from, to } = useAppContext()
   const hasResults = Boolean(results?.length)
 
   return (
@@ -18,7 +19,22 @@ export default function Page() {
       <HeroSection />
 
       {/* If results exist */}
-      {hasResults && <RouteDetails />}
+      {hasResults && (
+        <>
+          <RouteDetails />
+          <section className="w-full py-16 px-[5%] max-w-[1380px] mx-auto">
+            <div className="max-w-5xl mx-auto">
+              <div className="mb-6">
+                <h3 className="text-2xl font-black text-[#05073C]">Community Chat</h3>
+                <p className="text-sm text-gray-600 mt-2">
+                  Real-time commuter updates from people currently using this route.
+                </p>
+              </div>
+              <RouteCommunityChat routeKey={selectedRoute?.routeKey} from={from} to={to} />
+            </div>
+          </section>
+        </>
+      )}
 
       {/* If searched but no results */}
       {hasSearched && !hasResults && (

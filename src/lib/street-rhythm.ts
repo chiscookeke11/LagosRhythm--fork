@@ -12,6 +12,16 @@ const TYPE_LABELS: Record<string, string> = {
   ai: "AI Direction",
 };
 
+const LANGUAGE_WORDS = ["english", "pidgin", "yoruba", "general"];
+
+function isLanguageTypeTitle(title: string): boolean {
+  const lower = title.toLowerCase().trim();
+  const typeValues = Object.values(TYPE_LABELS).map((v) => v.toLowerCase());
+  return LANGUAGE_WORDS.some((lang) =>
+    typeValues.some((type) => lower === `${lang} ${type}` || lower === `${lang} ${type} guide`)
+  );
+}
+
 export function normalizeStreetRhythmLanguage(language?: string) {
   return language?.trim().toLowerCase() || "general";
 }
@@ -23,8 +33,11 @@ export function formatStreetRhythmLanguageLabel(language?: string) {
 }
 
 export function getStreetRhythmResourceLabel(resource: LocationResourceDataType) {
-  return resource.title
-    ?? resource.landmark_title
+  const rawTitle = resource.title;
+  if (rawTitle && !isLanguageTypeTitle(rawTitle)) {
+    return rawTitle;
+  }
+  return resource.landmark_title
     ?? resource.landmark_name
     ?? resource.subtitle
     ?? TYPE_LABELS[resource.type.toLowerCase()]

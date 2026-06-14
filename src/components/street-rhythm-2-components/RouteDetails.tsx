@@ -10,7 +10,6 @@ import AIDirectionTab from "../direction-feature-components/AI_Direction"
 import RouteTrafficCard from "./RouteTrafficCard"
 import RouteMapTraffic from "./RouteMapTraffic"
 import RouteArrivalNotifications from "./RouteArrivalNotifications"
-import RouteCommunityChat from "./RouteCommunityChat"
 
 export default function RouteDetails() {
     const {
@@ -25,32 +24,31 @@ export default function RouteDetails() {
     } = useAppContext()
 
     const routeResources = selectedRoute?.resources ?? []
-    const routeTags = selectedRoute?.tags ?? []
+    const routeTags = (selectedRoute?.tags ?? []).filter((tag) => {
+        const t = tag.toLowerCase()
+        return t !== "bus" && t !== "bike"
+    })
     const languages = selectedRoute?.languages ?? []
 
     const sections = [
         {
             id: "overview",
             label: "Overview",
-            description: "Route summary, fare notes, safety guidance, and downloadable guide materials.",
             content: <TextTab data={textResults} />
         },
         {
             id: "landmarks",
             label: "Landmarks",
-            description: "Visual landmarks along the route to help you identify each stage of the journey.",
             content: <ImageTab data={imageResults} />
         },
         {
             id: "watch-route",
             label: "Watch Route",
-            description: "Watch the route videos before traveling so you can recognize key stops and transfers.",
             content: <VideoTab data={videoResults} fromStop={from} toStop={to} />
         },
         {
             id: "audio-guide",
             label: "Audio Guide",
-            description: "Listen to spoken route guidance by language while traveling.",
             content: <RecordingTab data={soundResults} />
         }
     ]
@@ -104,11 +102,7 @@ export default function RouteDetails() {
                     <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-5 md:p-6">
                         <div className="flex flex-col gap-4">
                             <div>
-                                <h3 className="text-xl font-black text-[#05073C] mb-2">Route Snapshot</h3>
-                                <p className="text-sm text-gray-600">
-                                    This route guide is now structured in the order commuters need it:
-                                    overview first, then landmarks, route video, and audio guidance.
-                                </p>
+                                <h3 className="text-xl font-black text-[#05073C]">Route Snapshot</h3>
                             </div>
 
                             {routeTags.length > 0 && (
@@ -149,13 +143,6 @@ export default function RouteDetails() {
                                     Arrival Alerts
                                 </button>
 
-                                <button
-                                    onClick={() => setActiveTab('community-chat')}
-                                    className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${activeTab === 'community-chat' ? 'bg-[#05073C] text-white border-[#05073C]' : 'text-[#05073C] border-[#05073C] hover:bg-[#05073C] hover:text-white'}`}
-                                >
-                                    Community Chat
-                                </button>
-
                                 {AIResults && AIResults.length > 0 && (
                                     <button
                                         onClick={() => setActiveTab('ai-direction')}
@@ -174,7 +161,6 @@ export default function RouteDetails() {
                             <section key={section.id} id={section.id} className="border-t pt-10">
                                 <div className="mb-6">
                                     <h3 className="text-2xl font-black text-[#05073C]">{section.label}</h3>
-                                    <p className="text-sm text-gray-600 mt-2">{section.description}</p>
                                 </div>
                                 {section.content}
                             </section>
@@ -212,19 +198,6 @@ export default function RouteDetails() {
                                 </p>
                             </div>
                             <RouteArrivalNotifications destination={to} />
-                        </section>
-                    )}
-
-                    {/* Community Chat */}
-                    {activeTab === 'community-chat' && (
-                        <section id="community-chat" className="border-t pt-10">
-                            <div className="mb-6">
-                                <h3 className="text-2xl font-black text-[#05073C]">Community Chat</h3>
-                                <p className="text-sm text-gray-600 mt-2">
-                                    Real-time commuter updates from people currently using this route.
-                                </p>
-                            </div>
-                            <RouteCommunityChat routeKey={selectedRoute?.routeKey} from={from} to={to} />
                         </section>
                     )}
 

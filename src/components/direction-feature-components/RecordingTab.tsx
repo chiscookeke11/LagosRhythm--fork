@@ -11,8 +11,8 @@ export default function RecordingTab({ data }: RecordingTabProps) {
 
     if (groupedRecordings.length < 1) {
         return (
-            <div className="w-full h-[10vh] flex items-center justify-center " >
-                <h4 className="text-xl font-medium font-merriweather text-[#05073C] " >No sound recording found!</h4>
+            <div className="w-full h-[10vh] flex items-center justify-center">
+                <h4 className="text-xl font-medium font-merriweather text-[#05073C]">No sound recording found!</h4>
             </div>
         )
     }
@@ -23,7 +23,7 @@ export default function RecordingTab({ data }: RecordingTabProps) {
                 <section key={group.language} className="w-full space-y-4">
                     <div className="flex items-center justify-between gap-3 flex-wrap">
                         <h4 className="text-lg font-black text-[#05073C]">
-                            {group.label} Audio Guide
+                            {group.label}
                         </h4>
                         <span className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-semibold text-[#05073C]">
                             {group.items.length} recording{group.items.length === 1 ? "" : "s"}
@@ -41,7 +41,6 @@ export default function RecordingTab({ data }: RecordingTabProps) {
                                     <p className="text-sm font-bold text-[#05073C]">
                                         {getStreetRhythmResourceLabel(sound)}
                                     </p>
-                                    <p className="text-xs text-gray-500">Language: {group.label}</p>
                                     {sound.description && (
                                         <p className="text-sm text-gray-700 line-clamp-3">{sound.description}</p>
                                     )}

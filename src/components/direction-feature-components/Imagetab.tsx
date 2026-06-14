@@ -51,19 +51,6 @@ export default function ImageTab({ data }: ImageTabProps) {
                             alt={getLandmarkTitle(image, index)}
                             className="w-full h-[250px] object-cover"
                         />
-
-                        {(image.subtitle || image.description) && (
-                            <div className="p-4 bg-white">
-                                {image.subtitle && (
-                                    <p className="text-xs font-semibold uppercase tracking-wide text-[#D4422C] mb-1">
-                                        {image.subtitle}
-                                    </p>
-                                )}
-                                <p className="text-sm text-gray-700 line-clamp-3">
-                                    {image.description}
-                                </p>
-                            </div>
-                        )}
                     </div>
                     )}
                 />
