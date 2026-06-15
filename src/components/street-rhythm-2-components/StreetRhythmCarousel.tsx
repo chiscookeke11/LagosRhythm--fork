@@ -7,11 +7,13 @@ import { Swiper, SwiperSlide } from "swiper/react"
 interface StreetRhythmCarouselProps<T> {
     items: T[]
     renderSlide: (item: T, index: number) => ReactNode
+    singleSlide?: boolean
 }
 
 export default function StreetRhythmCarousel<T>({
     items,
-    renderSlide
+    renderSlide,
+    singleSlide = false
 }: StreetRhythmCarouselProps<T>) {
     return (
         <Swiper
@@ -20,7 +22,7 @@ export default function StreetRhythmCarousel<T>({
             pagination={{ clickable: true }}
             spaceBetween={20}
             slidesPerView={1}
-            breakpoints={{
+            breakpoints={singleSlide ? undefined : {
                 640: {
                     slidesPerView: 1.15
                 },

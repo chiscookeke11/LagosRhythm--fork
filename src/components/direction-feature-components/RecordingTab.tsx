@@ -25,6 +25,7 @@ export default function RecordingTab({ data }: RecordingTabProps) {
 
             <StreetRhythmCarousel
                 items={sortedData}
+                singleSlide
                 renderSlide={(sound) => {
                     const languageName = sound.language
                         ? sound.language.charAt(0).toUpperCase() + sound.language.slice(1).toLowerCase()

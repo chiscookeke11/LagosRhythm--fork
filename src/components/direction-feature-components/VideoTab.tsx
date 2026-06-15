@@ -27,6 +27,7 @@ export default function VideoTab({ data }: VideoTabProps) {
 
             <StreetRhythmCarousel
                 items={sortedData}
+                singleSlide
                 renderSlide={(video) => {
                     const languageName = video.language
                         ? video.language.charAt(0).toUpperCase() + video.language.slice(1).toLowerCase()
