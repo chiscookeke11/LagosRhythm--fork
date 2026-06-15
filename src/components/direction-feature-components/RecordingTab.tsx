@@ -23,7 +23,7 @@ export default function RecordingTab({ data }: RecordingTabProps) {
                 {data.length} recording{data.length > 1 ? "s" : ""} found
             </span>
 
-            <div className="w-full max-w-sm mx-auto">
+            <div className="w-full max-w-[200px] mx-auto">
                 <StreetRhythmCarousel
                     items={sortedData}
                     singleSlide
