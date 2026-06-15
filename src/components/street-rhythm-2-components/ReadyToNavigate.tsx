@@ -9,7 +9,7 @@ export default function ReadyToNavigate() {
 
 
     return (
-        <div className=" w-full h-fit py-32 px-[6%] flex flex-col items-center justify-center gap-6 text-white bg-gradient-to-br from-[#D4422C] to-[#A33323] text-center relative ctaSection        "  >
+        <div className=" w-full h-fit py-16 md:py-32 px-[6%] flex flex-col items-center justify-center gap-6 text-white bg-gradient-to-br from-[#D4422C] to-[#A33323] text-center relative ctaSection        "  >
 
             <h1 className="font-black text-[1.75rem]  " >Ready to Navigate Lagos?</h1>
             <p className=" text-[1.05rem] opacity-95 text-[#CBD5E0] max-w-xl " >Join thousands of commuters who&apos;ve discovered the confidence of knowing exactly where they&apos;re going.</p>

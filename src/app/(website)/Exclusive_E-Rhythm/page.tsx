@@ -50,7 +50,7 @@ export default function Page() {
                     </motion.p>
 
 
-                    <div className=" w-fit flex items-center gap-6  mx-auto mt-12"  >
+                    <div className=" w-fit flex items-center gap-3 md:gap-6 flex-wrap justify-center mx-auto mt-12"  >
                         <a href="#themeSection">
                             <Button
                                 label="Book a Tour"

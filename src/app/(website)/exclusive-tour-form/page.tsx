@@ -312,14 +312,14 @@ export default function Page() {
                     <button
                       onClick={decreaseParticipantsCount}
                       type="button"
-                      className="cursor-pointer border-2 border-[#EF8F57] rounded-full h-8 w-8 flex items-center justify-center"
+                      className="cursor-pointer border-2 border-[#EF8F57] rounded-full h-10 w-10 flex items-center justify-center"
                     >
                       <Minus size={20} color="#EF8F57" />
                     </button>
                     <button
                       onClick={increaseParticipantsCount}
                       type="button"
-                      className="cursor-pointer border-2 border-[#EF8F57] rounded-full h-8 w-8 flex items-center justify-center"
+                      className="cursor-pointer border-2 border-[#EF8F57] rounded-full h-10 w-10 flex items-center justify-center"
                     >
                       <PlusIcon size={20} color="#EF8F57" />
                     </button>

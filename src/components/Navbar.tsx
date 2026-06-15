@@ -61,7 +61,7 @@ export default function Navbar() {
     }, [openMobileNav])
 
     return (
-        <nav className={`fixed top-0 left-0 w-full flex items-center justify-between gap-10 py-3 px-[4%] transition-colors duration-150 ease-in-out font-signika z-50 ${scrolled ? "bg-[#EF8F57]" : "bg-transparent"}`}>
+        <nav className={`fixed top-0 left-0 w-full flex items-center justify-between gap-4 lg:gap-10 py-3 px-[4%] transition-colors duration-150 ease-in-out font-signika z-50 ${scrolled ? "bg-[#EF8F57]" : "bg-transparent"}`}>
 
             <div className="w-fit flex items-center justify-center gap-28">
                 <Link href="/"><Image src="/logos/logo.png" height={100} width={100} alt="logo" className="w-[50px]" /></Link>
@@ -91,9 +91,9 @@ export default function Navbar() {
             </div>
 
             {/* Mobile nav */}
-            <div ref={mobileNavRef} className={`w-full h-fit bg-[#ffffff] fixed top-0 left-0 transform transition-transform duration-150 ease-in-out ${openMobileNav ? "translate-y-0" : "translate-y-[-100%]"}`}>
+            <div ref={mobileNavRef} className={`w-full h-fit max-h-screen overflow-y-auto bg-[#ffffff] fixed top-0 left-0 transform transition-transform duration-150 ease-in-out ${openMobileNav ? "translate-y-0" : "translate-y-[-100%]"}`}>
                 <div className="w-full h-full relative flex items-center justify-center">
-                    <button aria-label="Close Menu" onClick={() => setOpenMobileNav(false)} className="absolute top-[5%] right-[5%] cursor-pointer p-1 flex items-center justify-center">
+                    <button aria-label="Close Menu" onClick={() => setOpenMobileNav(false)} className="absolute top-4 right-4 cursor-pointer p-2 min-w-[44px] min-h-[44px] flex items-center justify-center">
                         <X size={30} color="#EF8F57" />
                     </button>
 

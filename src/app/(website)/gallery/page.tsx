@@ -164,7 +164,7 @@ export default function Page() {
                     setSelectedFrame(index)
                   }}
                   key={index}
-                  className={`col-span-1 row-span-1 rounded-xl overflow-hidden relative min-h-[450px] ${size(index + 1)}`}
+                  className={`col-span-1 row-span-1 rounded-xl overflow-hidden relative min-h-[250px] md:min-h-[350px] lg:min-h-[450px] ${size(index + 1)}`}
                   title={card.text}
                 >
                   {/* Show loader while image is loading or if no image */}

@@ -93,7 +93,7 @@ export default function RouteTrafficCard({ from, to }: RouteTrafficCardProps) {
   }
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 space-y-4">
+    <div className="rounded-2xl border border-gray-200 bg-white p-4 md:p-6 space-y-4">
       <h4 className="text-lg font-black text-[#05073C]">Travel Time Estimate</h4>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

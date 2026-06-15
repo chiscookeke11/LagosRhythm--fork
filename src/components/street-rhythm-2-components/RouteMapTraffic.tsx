@@ -223,7 +223,7 @@ export default function RouteMapTraffic({ from, to }: RouteMapTrafficProps) {
       )}
 
       <div className="overflow-hidden rounded-xl border border-gray-200">
-        <div ref={mapRef} className="h-[360px] w-full bg-gray-100" />
+        <div ref={mapRef} className="h-[250px] md:h-[360px] w-full bg-gray-100" />
       </div>
     </div>
   );

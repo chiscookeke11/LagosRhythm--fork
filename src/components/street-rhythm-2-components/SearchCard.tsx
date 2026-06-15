@@ -31,12 +31,12 @@ const {to, from, setTo, setFrom, findDirection, loading, locationInWords } = use
                     placeholder="Starting point (e.g., Yaba)"
                     value={from}
                     onChange={(e) => setFrom(e.target.value)}
-                    className="w-full pl-10 pr-16 py-2 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full pl-10 pr-16 py-3 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
                     required
                 />
                 <button
                     type="button"
-                    className="absolute right-3 cursor-pointer"
+                    className="absolute right-3 cursor-pointer p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
                     onClick={() => setFrom(locationInWords ?? "")}
                     title="Use current location"
                 >
@@ -53,7 +53,7 @@ const {to, from, setTo, setFrom, findDirection, loading, locationInWords } = use
                     placeholder="Destination (e.g., Maryland)"
                     value={to}
                     onChange={(e) => setTo(e.target.value)}
-                    className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full pl-10 pr-3 py-3 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
                     required
                 />
             </div>
