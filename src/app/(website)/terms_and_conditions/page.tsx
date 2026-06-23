@@ -1,3 +1,14 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions | Lagos Rhythm",
+  description:
+    "Lagos Rhythm terms and conditions. Read about booking policies, age eligibility, access codes, refunds, cancellation, user conduct, and liability for our Lagos virtual and in-person tours.",
+  alternates: {
+    canonical: "https://www.lagosrhythm.com/terms_and_conditions",
+  },
+}
+
 export default function Page() {
     return (
         <main className="w-full  px-4 py-8  pt-28 md:px-6 lg:px-8  bg-[#05073C]/95 text-[#FDF4F1] font-signika">

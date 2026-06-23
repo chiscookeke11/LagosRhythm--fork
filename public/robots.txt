@@ -1,9 +1,13 @@
-# *
 User-agent: *
 Allow: /
 
-# Host
+Disallow: /dashboard/
+Disallow: /auth
+Disallow: /reset-password
+Disallow: /book_form
+Disallow: /exclusive-tour-form
+Disallow: /Inperson-Form
+
 Host: https://www.lagosrhythm.com
 
-# Sitemaps
 Sitemap: https://www.lagosrhythm.com/sitemap.xml

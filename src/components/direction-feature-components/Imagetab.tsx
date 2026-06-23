@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Image from "next/image"
 import { LocationResourceDataType } from "@/Types/LocationResourceDataType"
 import { X } from "lucide-react"
 import StreetRhythmCarousel from "../street-rhythm-2-components/StreetRhythmCarousel"
@@ -46,10 +47,13 @@ export default function ImageTab({ data }: ImageTabProps) {
                             {getLandmarkTitle(image, index)}
                         </div>
 
-                        <img
+                        <Image
                             src={image.content_url}
                             alt={getLandmarkTitle(image, index)}
+                            width={400}
+                            height={250}
                             className="w-full h-[250px] object-cover"
+                            sizes="(max-width: 640px) 87vw, (max-width: 768px) 67vw, (max-width: 1024px) 45vw, (max-width: 1280px) 38vw, 30vw"
                         />
                     </div>
                     )}
@@ -74,9 +78,11 @@ export default function ImageTab({ data }: ImageTabProps) {
                         </button>
 
                         <div className="w-full overflow-y-auto">
-                            <img
+                            <Image
                                 src={selectedImage.content_url}
                                 alt={selectedImage.landmark_title ?? selectedImage.landmark_name ?? selectedImage.title ?? "Landmark preview"}
+                                width={800}
+                                height={600}
                                 className="w-full max-h-[70vh] object-contain bg-black"
                             />
 

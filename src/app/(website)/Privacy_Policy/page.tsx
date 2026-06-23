@@ -1,3 +1,14 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Lagos Rhythm",
+  description:
+    "Lagos Rhythm privacy policy. Learn how we collect, use, and protect your personal information when you use our virtual tours, book travel experiences, or visit our website.",
+  alternates: {
+    canonical: "https://www.lagosrhythm.com/Privacy_Policy",
+  },
+}
+
 export default function Page() {
     return (
         <main className="w-full  px-4 py-8  pt-28 md:px-6 lg:px-8  bg-[#05073C]/95 text-[#FDF4F1] font-signika ">

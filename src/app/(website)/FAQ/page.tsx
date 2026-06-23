@@ -1,7 +1,30 @@
-import { AccordionDemo } from "@/components/AccordionComponents";
-import { CircleQuestionMark } from "lucide-react";
+import type { Metadata } from "next"
+import { AccordionDemo } from "@/components/AccordionComponents"
+import { CircleQuestionMark } from "lucide-react"
+import JsonLd from "@/components/seo/JsonLd"
+import { faq } from "@/data/data"
 
+export const metadata: Metadata = {
+  title: "FAQ | Lagos Rhythm",
+  description:
+    "Frequently asked questions about Lagos Rhythm tours, bookings, virtual experiences, in-person tours, payments, and more. Get answers to common questions about exploring Lagos.",
+  alternates: {
+    canonical: "https://www.lagosrhythm.com/FAQ",
+  },
+}
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+}
 
 export default function Page() {
     return (
@@ -15,6 +38,7 @@ export default function Page() {
             <div className="w-full max-w-5xl" >
                 <AccordionDemo />
             </div>
+            <JsonLd data={faqJsonLd} />
         </div>
     )
 }

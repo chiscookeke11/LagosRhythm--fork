@@ -1,49 +1,24 @@
-"use client";
+import type { Metadata } from "next"
+import ClientPage from "./ClientPage"
 
-import { useEffect, useState } from "react";
-import BestOfLagos from "@/components/BestOfLagos";
-import HeroSection from "@/components/HeroSection";
-import NewsLetter from "@/components/NewsLetter";
-import PopularThings from "@/components/PopulaThings";
-import Testimonials from "@/components/Testimonials";
-import WhyLagos from "@/components/WhyLagos";
-import BlogLanding from "@/components/BlogLanding";
-import HeroFAQ from "@/components/HeroFAQ";
+export const metadata: Metadata = {
+  title: "Lagos Rhythm — Live the Vibe, Please the Mind | Virtual & In-Person Lagos Tours",
+  description:
+    "Discover Lagos, Nigeria through immersive virtual tours, in-person travel experiences, street transit guides, and cultural storytelling. Book free and exclusive tours of Africa's most vibrant megacity.",
+  alternates: {
+    canonical: "https://www.lagosrhythm.com",
+  },
+  openGraph: {
+    title: "Lagos Rhythm — Live the Vibe, Please the Mind",
+    description:
+      "Discover Lagos, Nigeria through immersive virtual tours, in-person travel experiences, street transit guides, and cultural storytelling.",
+    url: "https://www.lagosrhythm.com",
+    siteName: "Lagos Rhythm",
+    locale: "en_NG",
+    type: "website",
+  },
+}
 
-
-
-export default function Home() {
-  const [videoLoaded, setVideoLoaded] = useState(false);
-
-
-
-
-
-  useEffect(() => {
-    const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-
-    setVh();
-    window.addEventListener("resize", setVh);
-
-    return () => {
-      window.removeEventListener("resize", setVh);
-    };
-  }, []);
-
-
-  return (
-    <div>
-      <HeroSection setVideoLoaded={setVideoLoaded} videoLoaded={videoLoaded} />
-      <BestOfLagos />
-      <PopularThings />
-      <WhyLagos />
-      <BlogLanding />
-      <Testimonials />
-      <HeroFAQ />
-      <NewsLetter />
-    </div>
-  );
+export default function Page() {
+  return <ClientPage />
 }

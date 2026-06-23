@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Image from "next/image"
 import { Play, Download, Volume2, Image as ImageIcon } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
@@ -136,11 +137,15 @@ export default function StreetRhythmRoutePreview({ route, onClose }: Props) {
                 {images.map((image, idx) => (
                   <div key={idx} className="space-y-2">
                     <div className="bg-[#F5F5F5] rounded-lg overflow-hidden aspect-video">
-                      <img
-                        src={image.content_url}
-                        alt={image.title || "Route image"}
-                        className="w-full h-full object-cover"
-                      />
+                      {image.content_url && (
+                        <Image
+                          src={image.content_url}
+                          alt={image.title || "Route image"}
+                          width={400}
+                          height={225}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                     {image.title && (
                       <p className="text-[#05073C] font-semibold text-sm">
