@@ -26,18 +26,18 @@ export default function ThemesSection() {
 
 
     const previewTheme = (item: ThemeDataType) => {
-        if (!user) {
-            toast.error("Please sign in to continue");
-            return;
-        }
-        else if (user && !userData?.country) {
-            toast.error("Complete your profile to continue.");
-            return;
-        }
-        else {
-            setShowSelectModal(true)
-            setSelectedTheme(item.title)
-        }
+        // if (!user) {
+        //     toast.error("Please sign in to continue");
+        //     return;
+        // }
+        // else if (user && !userData?.country) {
+        //     toast.error("Complete your profile to continue.");
+        //     return;
+        // }
+        // else {
+        setShowSelectModal(true)
+        setSelectedTheme(item.title)
+        // }
     }
 
 
